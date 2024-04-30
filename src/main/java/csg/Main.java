@@ -2,6 +2,7 @@ package csg;
 
 import org.abstractica.javacsg.*;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,9 +21,15 @@ public class Main {
         Geometry3D thing3d = csg.linearExtrude(5,false,thing);
         Geometry3D thingRotated = csg.rotateExtrude(csg.rotations(0.25), 16 ,thing);
 
-        Cross cross = new Cross(30,5,3);
-        Geometry3D res = cross.getGeometry(csg);
+        double boardSize = 150;
+        double boardHeight = 17;
+        double brickSize = 42;
+        double holeDepth = 12;
+        double brickHeight = 17;
+        double brickWidth = 7;
+        TicTacToeGamePieces game = new TicTacToeGamePieces(boardSize,boardHeight,brickSize,holeDepth,brickHeight,brickWidth,csg);
+        csg.view(game.getGeometry());
 
-        csg.view(res);
+
     }
 }
